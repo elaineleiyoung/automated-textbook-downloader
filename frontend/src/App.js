@@ -1,6 +1,7 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./App.css"
+import SearchTextbooks from "./Components/SearchTextbooks";
   
 function App() {
     // usestate for setting a javascript
@@ -30,6 +31,7 @@ function App() {
     }, []);
   
     return (
+        <>
         <div className="App">
             <header className="App-header">
                 <h1>React and flask</h1>
@@ -38,9 +40,15 @@ function App() {
                 <p>{data.age}</p>
                 <p>{data.date}</p>
                 <p>{data.programming}</p>
-  
             </header>
+            <SearchTextbooks placeholder="Enter a textbook name..."/>
+
         </div>
+
+        <div className="App">
+        </div>
+
+        </>
     );
 }
   
