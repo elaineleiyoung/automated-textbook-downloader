@@ -10,7 +10,7 @@ function App() {
     const [data, setdata] = useState({
         name: "",
         publish_year: 0,
-        key: "",
+        author: "",
         isbn: "",
         img: ""
     });
@@ -40,7 +40,7 @@ function App() {
                         <>
                         <h2 key={book.title}>{book.title}</h2>
                         <p key={book.publish_year}>Publication Year: {book.publish_year}</p>
-                        <p key={book.key}>{book.key}</p>
+                        <p key={book.author}>Author: {book.author_name.join(", ")}</p>
                         <p key={book.isbn[0]}>ISBN: {book.isbn[0]}</p>
                         <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} />
                         <br></br>
