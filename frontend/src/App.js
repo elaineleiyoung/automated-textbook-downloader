@@ -10,26 +10,28 @@ function App() {
     const [data, setdata] = useState({
         name: "",
         publish_year: 0,
-        key: "",
-        isbn: "",
+        author: [],
+        isbn: [],
+        ia: ""
     });
 
-    const bookListStuff = fetch("/book").then((res) =>
-        res.json().then((data) => {
-            // console.log("data is  ", data.data)
-            setBooklist(data.data)
+    useEffect(() => {
+        fetch("/book").then((res) =>
+            res.json().then((data) => {
+                setBooklist(data.data)
+            }
+            )
+        );
 
-            // console.log("printing stuff ", bookList)
-            // data.data.map(book => {
-            //     console.log(book.title)
-            //     return (
-            //         <li>
-            //             {book.title}
-            //         </li>
-            //     )
-            // })
-        }
-        ));
+    }, []);
+
+
+    // fetch("https://covers.openlibrary.org/b/isbn/0486600904.jpg").then((res) =>
+    //     res.json().then((data) => {
+    //         // console.log("data is  ", data.data)
+    //         setBooklist(data.data)
+    // }
+    // ));
 
   
     return (
@@ -40,10 +42,12 @@ function App() {
                 <div>
                     {bookList.map((book) => (
                         <>
-                        <p key={book.title}>{book.title}</p>
-                        <p key={book.publish_year}>{book.publish_year}</p>
-                        <p key={book.key}>{book.key}</p>
-                        <p key={book.isbn}>{book.isbn}</p>
+                        <h2 key={book.title}>{book.title}</h2>
+                        <p key={book.publish_year}>Publication Year: {book.publish_year}</p>
+                        <p key={book.author}>Author: {book.author_name.join(", ")}</p>
+                        <p key={book.isbn[0]}>ISBN: {book.isbn[0]}</p>
+                        <p key={book.ia}>Download: https://archive.org/{book.ia}/{book.ia}.pdf </p>
+                        <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} />
                         <br></br>
                         </>
                     ))}

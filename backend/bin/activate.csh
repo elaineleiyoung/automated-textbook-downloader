@@ -10,7 +10,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV '/Users/elaineleiyoung/Desktop/Projects/automated-textbook-downloader'
+setenv VIRTUAL_ENV '/Users/elaineleiyoung/Desktop/Projects/automated-textbook-downloader/backend'
 
 set _OLD_VIRTUAL_PATH="$PATH:q"
 setenv PATH "$VIRTUAL_ENV:q/bin:$PATH:q"
