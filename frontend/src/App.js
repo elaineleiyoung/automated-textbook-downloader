@@ -1,6 +1,7 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./App.css"
+import SearchTextbooks from "./Components/SearchTextbooks";
   
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
         res.json().then((data) => {
             // console.log("data is  ", data.data)
             setBooklist(data.data)
-
+            
             // console.log("printing stuff ", bookList)
             // data.data.map(book => {
             //     console.log(book.title)
@@ -33,7 +34,9 @@ function App() {
 
   
     return (
+        <>
         <div className="App">
+
             <header> 
                 <h1>Automated Textbook Download</h1>
             </header>
@@ -47,8 +50,12 @@ function App() {
                         <br></br>
                         </>
                     ))}
+                <SearchTextbooks placeholder="Enter a textbook name..."/>
                 </div>
+
         </div>
+
+        </>
     );
 }
   
