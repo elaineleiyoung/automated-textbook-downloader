@@ -4,48 +4,55 @@ import "./App.css"
 import SearchTextbooks from "./Components/SearchTextbooks";
   
 function App() {
+
+    const [bookList, setBooklist] = useState([]);
     // usestate for setting a javascript
     // object for storing and using data
     const [data, setdata] = useState({
         name: "",
-        age: 0,
-        date: "",
-        programming: "",
+        publish_year: 0,
+        key: "",
+        isbn: "",
     });
-  
-    // Using useEffect for single rendering
-    useEffect(() => {
-        // Using fetch to fetch the api from 
-        // flask server it will be redirected to proxy
-        fetch("/data").then((res) =>
-            res.json().then((data) => {
-                // Setting a data from api
-                setdata({
-                    name: data.Name,
-                    age: data.Age,
-                    date: data.Date,
-                    programming: data.programming,
-                });
-            })
-        );
-    }, []);
+
+    const bookListStuff = fetch("/book").then((res) =>
+        res.json().then((data) => {
+            // console.log("data is  ", data.data)
+            setBooklist(data.data)
+            
+            // console.log("printing stuff ", bookList)
+            // data.data.map(book => {
+            //     console.log(book.title)
+            //     return (
+            //         <li>
+            //             {book.title}
+            //         </li>
+            //     )
+            // })
+        }
+        ));
+
   
     return (
         <>
         <div className="App">
-            <header className="App-header">
-                <h1>React and flask</h1>
-                {/* Calling a data from setdata for showing */}
-                <p>{data.name}</p>
-                <p>{data.age}</p>
-                <p>{data.date}</p>
-                <p>{data.programming}</p>
+
+            <header> 
+                <h1>Automated Textbook Download</h1>
             </header>
-            <SearchTextbooks placeholder="Enter a textbook name..."/>
+                <div>
+                    {bookList.map((book) => (
+                        <>
+                        <p key={book.title}>{book.title}</p>
+                        <p key={book.publish_year}>{book.publish_year}</p>
+                        <p key={book.key}>{book.key}</p>
+                        <p key={book.isbn}>{book.isbn}</p>
+                        <br></br>
+                        </>
+                    ))}
+                <SearchTextbooks placeholder="Enter a textbook name..."/>
+                </div>
 
-        </div>
-
-        <div className="App">
         </div>
 
         </>
