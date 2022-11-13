@@ -12,7 +12,6 @@ function App() {
         publish_year: 0,
         author: [],
         isbn: [],
-        ia: ""
     });
 
     useEffect(() => {
@@ -25,13 +24,13 @@ function App() {
 
     }, []);
 
+    const imageClick = () => {
+        // call download script
+        fetch(`/download/${data.isbn}`)
+        {};
+        console.log('Click!!!!');
+    }  
 
-    // fetch("https://covers.openlibrary.org/b/isbn/0486600904.jpg").then((res) =>
-    //     res.json().then((data) => {
-    //         // console.log("data is  ", data.data)
-    //         setBooklist(data.data)
-    // }
-    // ));
 
   
     return (
@@ -46,8 +45,7 @@ function App() {
                         <p key={book.publish_year}>Publication Year: {book.publish_year}</p>
                         <p key={book.author}>Author: {book.author_name.join(", ")}</p>
                         <p key={book.isbn[0]}>ISBN: {book.isbn[0]}</p>
-                        <p key={book.ia}>Download: https://archive.org/{book.ia}/{book.ia}.pdf </p>
-                        <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} />
+                        <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`} onClick={() => imageClick()} />
                         <br></br>
                         </>
                     ))}

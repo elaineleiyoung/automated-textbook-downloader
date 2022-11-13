@@ -2,6 +2,7 @@ from flask import Flask, request
 import datetime
 import requests
 import os
+from download import book_info_getter
   
 # x = datetime.datetime.now()
 # inp = input("name:")
@@ -24,7 +25,12 @@ def display_book():
             'data': data["docs"]}
 
     return res
-      
+
+@app.route('/download/<keyword>')
+def download(keyword):
+    return download.book_info_getter(keyword)
+
+
 # Running app
 if __name__ == '__main__':
     app.run(debug=True)
